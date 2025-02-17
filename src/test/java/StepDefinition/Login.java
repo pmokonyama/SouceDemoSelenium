@@ -35,4 +35,7 @@ public class Login {
     public void user_should_be_logged_in() {
         Assert.assertEquals("Products", login.getPageTitleAfterLogin());
     }
+    @Then("The user click save button")
+    public void the_user_click_save_button() {
+        addUserPage.clickSave();
 }
