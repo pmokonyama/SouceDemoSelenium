@@ -9,5 +9,8 @@
         <module name="SouceDemoSelenium" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="SouceDemoSelenium" target="22" />
+    </bytecodeTargetLevel>
   </component>
 </project>
