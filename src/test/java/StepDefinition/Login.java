@@ -1,6 +1,7 @@
 package StepDefinition;
 
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -27,7 +28,11 @@ public class Login {
         login.setUserName("standard_user");
         login.setPassword("secret_sauce");
         login.clickLoginBtn();
-        Assert.assertEquals(login.getPageTitleAfterLogin(), "Products");
 
+    }
+
+    @Then("User should be logged in")
+    public void user_should_be_logged_in() {
+        Assert.assertEquals("Products", login.getPageTitleAfterLogin());
     }
 }
