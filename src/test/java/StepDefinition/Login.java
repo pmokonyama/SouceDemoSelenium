@@ -23,19 +23,19 @@ public class Login {
         Assert.assertEquals(logoText, "Swag Labs");
     }
 
-    @When("User logins with correct username and password")
-    public void userLoginsWithCorrectUsernameAndPassword() {
-        login.setUserName("standard_user");
-        login.setPassword("secret_sauce");
-        login.clickLoginBtn();
 
+    @When("User logins with correct {string} and {string}")
+    public void userLoginsWithCorrectAnd(String username, String password) {
+        login.setUserName(username);
+        login.setPassword(password);
+        login.clickLoginBtn();
     }
+
 
     @Then("User should be logged in")
     public void user_should_be_logged_in() {
         Assert.assertEquals("Products", login.getPageTitleAfterLogin());
     }
-    @Then("The user click save button")
-    public void the_user_click_save_button() {
-        addUserPage.clickSave();
+
 }
+
