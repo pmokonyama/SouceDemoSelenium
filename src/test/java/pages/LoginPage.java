@@ -9,6 +9,9 @@ public class LoginPage {
 
 
     WebDriver driver;
+
+    //These are my locators
+    private By swagLabsLogo = By.className("login_logo");
     private By userName = By.xpath("//*[@id=\"user-name\"]");
     private By Password = By.xpath("//*[@id=\"password\"]");
     private By loginBtn = By.xpath("//*[@id=\"login-button\"]");
@@ -18,12 +21,8 @@ public class LoginPage {
         this.driver = driver;
     }
 
-    //These are my locators
-    private By swagLabsLogo = By.className("login_logo");
-
 
     public String getSwagLabsText() {
-
         return driver.findElement(swagLabsLogo).getText();
     }
 

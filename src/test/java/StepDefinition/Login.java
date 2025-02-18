@@ -19,8 +19,8 @@ public class Login {
     public void user_is_on_the_Saucedemo_login_page() {
         driver.get("https://www.saucedemo.com/");
 
-        String logoText = driver.findElement(By.className("login_logo")).getText();
-        Assert.assertEquals(logoText, "Swag Labs");
+        //String logoText = driver.findElement(By.className("login_logo")).getText();
+        Assert.assertEquals("Swag Labs", login.getSwagLabsText());
     }
 
 
