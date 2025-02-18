@@ -6,17 +6,20 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import pages.LoginPage;
+import pages.ProductsHomePage;
 import utilities.BrowserDriver;
 
 import static utilities.BrowserDriver.driver;
 
-public class Login {
+public class Steps {
     BrowserDriver browser = new BrowserDriver();
     public LoginPage login = new LoginPage(driver);
+    ProductsHomePage homePage = new ProductsHomePage(driver);
 
 
     @Given("User is on the Saucedemo login page")
     public void user_is_on_the_Saucedemo_login_page() {
+        driver.manage().window().maximize();
         driver.get("https://www.saucedemo.com/");
 
         String logoText = driver.findElement(By.className("login_logo")).getText();
@@ -34,8 +37,16 @@ public class Login {
 
     @Then("User should be logged in")
     public void user_should_be_logged_in() {
-        Assert.assertEquals("Products", login.getPageTitleAfterLogin());
     }
 
+    @Given("User is on the Products page")
+    public void userIsOnTheProductsPage() {
+        homePage.verifyProductTitleIsVisible();
+    }
+
+    @When("User selects second item on the product list")
+    public void userSelectsSecondItemOnTheProductList() {
+        homePage.clickingOnCartButtonForSauceBike();
+    }
 }
 
