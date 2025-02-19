@@ -1,5 +1,6 @@
 package StepDefinition;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -22,8 +23,8 @@ public class Steps {
         driver.manage().window().maximize();
         driver.get("https://www.saucedemo.com/");
 
-        String logoText = driver.findElement(By.className("login_logo")).getText();
-        Assert.assertEquals(logoText, "Swag Labs");
+        //String logoText = driver.findElement(By.className("login_logo")).getText();
+        Assert.assertEquals("Swag Labs", login.getSwagLabsText());
     }
 
 
@@ -47,6 +48,24 @@ public class Steps {
     @When("User selects second item on the product list")
     public void userSelectsSecondItemOnTheProductList() {
         homePage.clickingOnCartButtonForSauceBike();
+    }
+
+    @And("The cart icon should show item")
+    public void theCartIconShouldShowItem() {
+        homePage.clickCart();
+    }
+
+    @And("Verify, user is on the correct page Your Cart")
+    public void VerifyUserIsOnTheCorrectPageYourCart() {
+        homePage.verifyYourCartTitleIsVisible();
+    }
+    @And("Verify user selected the correct product")
+    public void verifyUserSelectedTheCorrectProduct() {
+        homePage.verifySelectedProduct();
+    }
+    @Then("User clicks the continue shopping button")
+    public void userClicksTheContinueShoppingButton() {
+        homePage.clickContinueShoppingButton();
     }
 }
 
