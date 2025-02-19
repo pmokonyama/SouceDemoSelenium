@@ -26,6 +26,12 @@ public class ProductsHomePage {
     @FindBy(xpath = "//*[@id=\"header_container\"]/div[2]/span")
     private WebElement yourCartText;
 
+    @FindBy(xpath = "//*[@id=\"item_0_title_link\"]/div")
+    WebElement product_xpath;
+
+    @FindBy(xpath = "//*[@id=\"continue-shopping\"]")
+    WebElement continue_shopping_button;
+
 
 
     public ProductsHomePage(WebDriver driver) {
@@ -60,5 +66,16 @@ public class ProductsHomePage {
                 .until(ExpectedConditions.visibilityOf(yourCartText));
         Assert.assertEquals("Your Cart", yourCartText.getText());
     }
+    // Verifies the selected product name
+    public void verifySelectedProduct() {
+        String actualProductName = product_xpath.getText();
+        Assert.assertEquals("Sauce Labs Bike Light", product_xpath.getText());
+        new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions.visibilityOf(product_xpath));
+ }
+ //Clicks the "Continue Shopping" button
+    public void clickContinueShoppingButton() {
+        continue_shopping_button.click();
+    }
+
 }
 

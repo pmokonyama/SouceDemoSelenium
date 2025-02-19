@@ -59,5 +59,13 @@ public class Steps {
     public void VerifyUserIsOnTheCorrectPageYourCart() {
         homePage.verifyYourCartTitleIsVisible();
     }
+    @And("Verify user selected the correct product")
+    public void verifyUserSelectedTheCorrectProduct() {
+        homePage.verifySelectedProduct();
+    }
+    @Then("User clicks the continue shopping button")
+    public void userClicksTheContinueShoppingButton() {
+        homePage.clickContinueShoppingButton();
+    }
 }
 
