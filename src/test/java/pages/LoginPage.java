@@ -45,10 +45,5 @@ public class LoginPage {
         return driver.findElement(products).getText();
     }
 
-
-
-
-
-
 }
 

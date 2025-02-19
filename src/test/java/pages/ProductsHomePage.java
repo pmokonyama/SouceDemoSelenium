@@ -13,7 +13,7 @@ import java.time.Duration;
 
 public class ProductsHomePage {
 
-    WebDriver driver;
+    static WebDriver driver;
 
     @FindBy(xpath = "//span[contains(.,'Products')]")
     WebElement productText;
@@ -21,7 +21,12 @@ public class ProductsHomePage {
     private WebElement addToCartBtn;
 
     @FindBy(xpath = "//a[@class='shopping_cart_link'][contains(.,'1')]")
-    WebElement cartLink_xpath;
+    private WebElement click_cart;
+
+    @FindBy(xpath = "//*[@id=\"header_container\"]/div[2]/span")
+    private WebElement yourCartText;
+
+
 
     public ProductsHomePage(WebDriver driver) {
         this.driver = driver;
@@ -43,5 +48,17 @@ public class ProductsHomePage {
         addToCartBtn.click();
     }
 
+    public void clickCart() {
+        new WebDriverWait(driver, Duration.ofSeconds(10))
+                .until(ExpectedConditions.elementToBeClickable(click_cart))
+                .click();
+    }
 
+
+    public void verifyYourCartTitleIsVisible() {
+        new WebDriverWait(driver, Duration.ofSeconds(10))
+                .until(ExpectedConditions.visibilityOf(yourCartText));
+        Assert.assertEquals("Your Cart", yourCartText.getText());
+    }
 }
+
