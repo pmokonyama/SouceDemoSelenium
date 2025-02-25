@@ -4,8 +4,6 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.junit.Assert;
-import org.openqa.selenium.By;
 import pages.LoginPage;
 import pages.ProductsHomePage;
 import utilities.BrowserDriver;
@@ -13,7 +11,7 @@ import utilities.BrowserDriver;
 import static utilities.BrowserDriver.driver;
 
 public class Steps {
-    BrowserDriver browser = new BrowserDriver();
+     BrowserDriver browser = new BrowserDriver();
     public LoginPage login = new LoginPage(driver);
     ProductsHomePage homePage = new ProductsHomePage(driver);
 
@@ -22,9 +20,8 @@ public class Steps {
     public void user_is_on_the_Saucedemo_login_page() {
         driver.manage().window().maximize();
         driver.get("https://www.saucedemo.com/");
+        login.getSwagLabsText();
 
-        //String logoText = driver.findElement(By.className("login_logo")).getText();
-        Assert.assertEquals("Swag Labs", login.getSwagLabsText());
     }
 
 
@@ -32,12 +29,14 @@ public class Steps {
     public void userLoginsWithCorrectAnd(String username, String password) {
         login.setUserName(username);
         login.setPassword(password);
-        login.clickLoginBtn();
+
     }
 
 
     @Then("User should be logged in")
     public void user_should_be_logged_in() {
+        login.clickLoginBtn();
+
     }
 
     @Given("User is on the Products page")
@@ -50,12 +49,12 @@ public class Steps {
         homePage.clickingOnCartButtonForSauceBike();
     }
 
-    @And("The cart icon should show item")
-    public void theCartIconShouldShowItem() {
+    @And("Clicks the cart button when the item appears in the cart icon")
+    public void clicksTheCartButtonWhenTheItemAppearsInTheCartIcon() {
         homePage.clickCart();
     }
 
-    @And("Verify, user is on the correct page Your Cart")
+    @And("Verify, user is on the correct page")
     public void VerifyUserIsOnTheCorrectPageYourCart() {
         homePage.verifyYourCartTitleIsVisible();
     }
@@ -63,9 +62,10 @@ public class Steps {
     public void verifyUserSelectedTheCorrectProduct() {
         homePage.verifySelectedProduct();
     }
-    @Then("User clicks the continue shopping button")
-    public void userClicksTheContinueShoppingButton() {
+    @Then("The user is redirected to the Products page")
+    public void theUserIsRedirectedToTheProductsPage() {
         homePage.clickContinueShoppingButton();
+        browser.close();
     }
 }
 

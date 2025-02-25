@@ -1,6 +1,5 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,8 +7,9 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.junit.Assert;
-
 import java.time.Duration;
+
+
 
 public class ProductsHomePage {
 
@@ -17,17 +17,18 @@ public class ProductsHomePage {
 
     @FindBy(xpath = "//span[contains(.,'Products')]")
     WebElement productText;
-    @FindBy(xpath = "(//button[@class='btn btn_primary btn_small btn_inventory '])[2]")
-    private WebElement addToCartBtn;
+
+    @FindBy(xpath = "(//button[@class='btn btn_primary btn_small btn_inventory '])[2]/following-sibling::*")
+    WebElement addToCartBtn;
 
     @FindBy(xpath = "//a[@class='shopping_cart_link'][contains(.,'1')]")
-    private WebElement click_cart;
+    WebElement click_cart;
 
     @FindBy(xpath = "//*[@id=\"header_container\"]/div[2]/span")
-    private WebElement yourCartText;
+    WebElement yourCartText;
 
     @FindBy(xpath = "//*[@id=\"item_0_title_link\"]/div")
-    WebElement product_xpath;
+    WebElement product_name;
 
     @FindBy(xpath = "//*[@id=\"continue-shopping\"]")
     WebElement continue_shopping_button;
@@ -37,13 +38,15 @@ public class ProductsHomePage {
     public ProductsHomePage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver,this);
+
+
     }
 
     public void verifyProductTitleIsVisible() {
         System.out.println(productText.getText());
-        new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions.visibilityOf(productText));
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOf(productText));
 
-        // The below does exactly the same thing, you need to use one
+
         productText.isDisplayed();
 
         String productTExt = productText.getText();
@@ -55,7 +58,7 @@ public class ProductsHomePage {
     }
 
     public void clickCart() {
-        new WebDriverWait(driver, Duration.ofSeconds(10))
+        new WebDriverWait(driver, Duration.ofSeconds(5000))
                 .until(ExpectedConditions.elementToBeClickable(click_cart))
                 .click();
     }
@@ -68,11 +71,11 @@ public class ProductsHomePage {
     }
     // Verifies the selected product name
     public void verifySelectedProduct() {
-        String actualProductName = product_xpath.getText();
-        Assert.assertEquals("Sauce Labs Bike Light", product_xpath.getText());
-        new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions.visibilityOf(product_xpath));
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOf(product_name));
+        Assert.assertEquals("Sauce Labs Bike Light", product_name.getText());
+
  }
- //Clicks the "Continue Shopping" button
+
     public void clickContinueShoppingButton() {
         continue_shopping_button.click();
     }

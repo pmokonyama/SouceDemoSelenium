@@ -6,11 +6,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="SouceDemoSelenium" />
+        <module name="SauceDemoSelenium" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="SouceDemoSelenium" target="22" />
-    </bytecodeTargetLevel>
   </component>
 </project>

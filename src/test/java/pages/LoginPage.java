@@ -15,7 +15,7 @@ public class LoginPage {
     private By userName = By.xpath("//*[@id=\"user-name\"]");
     private By Password = By.xpath("//*[@id=\"password\"]");
     private By loginBtn = By.xpath("//*[@id=\"login-button\"]");
-    private By products = By.xpath("//*[@id=\"header_container\"]/div[2]/span");
+    //private By products = By.xpath("//*[@id=\"header_container\"]/div[2]/span");
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
@@ -24,6 +24,7 @@ public class LoginPage {
 
     public String getSwagLabsText() {
         return driver.findElement(swagLabsLogo).getText();
+
     }
 
     public void setUserName(String username){
@@ -39,10 +40,6 @@ public class LoginPage {
     public void clickLoginBtn(){
         driver.findElement(loginBtn).click();
 
-    }
-
-    public String getPageTitleAfterLogin() {
-        return driver.findElement(products).getText();
     }
 
 }
